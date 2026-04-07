@@ -1,159 +1,206 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>I2M Platform v2 — Mondelēz</title>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>I2M Innovation Platform — Mondelēz</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400&display=swap');
 *{box-sizing:border-box;margin:0;padding:0;}
 :root{
   --bg:#08090d;--s1:#0f1117;--s2:#161921;--s3:#1d2029;
-  --b1:rgba(255,255,255,0.06);--b2:rgba(255,255,255,0.11);--b3:rgba(255,255,255,0.18);
+  --b1:rgba(255,255,255,0.06);--b2:rgba(255,255,255,0.11);--b3:rgba(255,255,255,0.2);
   --tx:#eeedf0;--tm:#8b909e;--td:#555a66;
   --ac:#4f6ef7;--ac2:#7c5cfc;--teal:#2ecfa8;--amber:#f5a623;--coral:#f06449;--green:#52c97e;
   --font:'DM Sans',sans-serif;--mono:'DM Mono',monospace;
 }
-body{font-family:var(--font);background:var(--bg);color:var(--tx);min-height:100vh;display:flex;flex-direction:column;}
-.app{display:flex;flex-direction:column;flex:1;min-height:100vh;}
+body{font-family:var(--font);background:var(--bg);color:var(--tx);min-height:100vh;}
+.app{display:flex;flex-direction:column;min-height:100vh;}
 .topbar{display:flex;align-items:center;justify-content:space-between;padding:0 20px;height:48px;border-bottom:0.5px solid var(--b1);background:var(--s1);flex-shrink:0;}
 .logo{display:flex;align-items:center;gap:9px;}
-.logo-mark{width:28px;height:28px;border-radius:7px;background:linear-gradient(135deg,var(--ac),var(--ac2));display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:500;color:#fff;}
+.logo-mark{width:27px;height:27px;border-radius:7px;background:linear-gradient(135deg,var(--ac),var(--ac2));display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:500;color:#fff;}
 .logo-name{font-size:13px;font-weight:500;letter-spacing:-.3px;}
-.logo-div{width:1px;height:16px;background:var(--b2);margin:0 4px;}
+.logo-sep{width:1px;height:14px;background:var(--b2);margin:0 4px;}
 .logo-sub{font-size:11px;color:var(--tm);}
 .topbar-r{display:flex;align-items:center;gap:8px;}
-.tnav{font-size:12px;padding:5px 11px;border-radius:20px;color:var(--tm);cursor:pointer;border:0.5px solid transparent;}
-.tnav.on{color:var(--tx);background:var(--s2);border-color:var(--b2);}
+.tnav{font-size:12px;padding:5px 11px;border-radius:20px;color:var(--tm);cursor:pointer;transition:all .13s;border:0.5px solid transparent;}
+.tnav:hover,.tnav.on{color:var(--tx);background:var(--s2);border-color:var(--b2);}
 .av{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--ac),var(--ac2));display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:500;color:#fff;}
-.main{flex:1;display:flex;}
-.sidebar{width:200px;min-width:200px;background:var(--s1);border-right:0.5px solid var(--b1);padding:16px 0;display:flex;flex-direction:column;}
-.sg{padding:0 6px 14px;}
-.slabel{font-size:10px;color:var(--td);letter-spacing:.8px;text-transform:uppercase;padding:0 8px;margin-bottom:6px;}
-.sitem{display:flex;align-items:center;gap:9px;padding:6px 8px;margin:1px 0;border-radius:7px;cursor:pointer;font-size:12px;color:var(--tm);}
-.sitem.on{background:rgba(79,110,247,.13);color:var(--ac);}
-.sdot{width:6px;height:6px;border-radius:50%;background:var(--b2);flex-shrink:0;}
-.sdot.live{background:var(--teal);box-shadow:0 0 5px var(--teal);}
-.sbadge{margin-left:auto;font-size:9px;padding:2px 6px;border-radius:10px;background:rgba(79,110,247,.18);color:var(--ac);}
-.sbadge.dim{background:rgba(85,90,102,.15);color:var(--td);}
+.main{flex:1;display:flex;overflow:hidden;}
+.sidebar{width:196px;min-width:196px;background:var(--s1);border-right:0.5px solid var(--b1);padding:14px 0;overflow-y:auto;}
+.sg{padding:0 8px 14px;}
+.slbl{font-size:9px;color:var(--td);letter-spacing:.9px;text-transform:uppercase;padding:0 8px;margin-bottom:6px;}
+.si{display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:7px;cursor:pointer;font-size:12px;color:var(--tm);transition:all .12s;margin-bottom:1px;}
+.si:hover{background:var(--s2);color:var(--tx);}
+.si.on{background:rgba(79,110,247,.13);color:var(--ac);}
+.sdot{width:5px;height:5px;border-radius:50%;background:var(--b2);flex-shrink:0;}
+.sdot.live{background:var(--teal);box-shadow:0 0 4px var(--teal);}
+.sbg{margin-left:auto;font-size:9px;padding:2px 5px;border-radius:8px;background:rgba(79,110,247,.18);color:var(--ac);}
+.sbg.dim{background:rgba(85,90,102,.15);color:var(--td);}
 .content{flex:1;overflow-y:auto;}
 .view{display:none;}
 .view.on{display:block;}
 
-.home-hero{padding:28px 28px 0;}
-.hero-row{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:6px;}
-.hero-title{font-size:21px;font-weight:500;letter-spacing:-.5px;}
+/* HOME */
+.home-hero{padding:24px 26px 0;}
+.hero-top{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:4px;}
+.hero-title{font-size:20px;font-weight:500;letter-spacing:-.4px;}
 .hero-sub{font-size:12px;color:var(--tm);margin-top:3px;}
-.hero-stats{display:flex;gap:8px;}
-.hstat{background:var(--s1);border:0.5px solid var(--b1);border-radius:9px;padding:10px 16px;text-align:center;}
-.hstat-n{font-size:18px;font-weight:500;}
-.hstat-l{font-size:10px;color:var(--tm);margin-top:2px;}
-
-.pipeline{padding:20px 28px 0;}
-.pipe-label{font-size:10px;color:var(--tm);letter-spacing:.6px;text-transform:uppercase;margin-bottom:10px;}
+.stats-row{display:flex;gap:8px;}
+.stat{background:var(--s1);border:0.5px solid var(--b1);border-radius:8px;padding:9px 14px;text-align:center;}
+.stat-n{font-size:17px;font-weight:500;}
+.stat-l{font-size:10px;color:var(--tm);margin-top:1px;}
+.pipeline{padding:18px 26px 0;}
+.pipe-lbl{font-size:10px;color:var(--tm);letter-spacing:.5px;text-transform:uppercase;margin-bottom:9px;}
 .pipe-track{display:flex;align-items:stretch;}
-.pseg{flex:1;padding:10px 10px 10px 20px;clip-path:polygon(0 0,calc(100% - 14px) 0,100% 50%,calc(100% - 14px) 100%,0 100%,14px 50%);background:var(--s2);cursor:pointer;}
-.pseg:first-child{clip-path:polygon(0 0,calc(100% - 14px) 0,100% 50%,calc(100% - 14px) 100%,0 100%);padding-left:14px;}
-.pseg:last-child{clip-path:polygon(0 0,100% 0,100% 100%,0 100%,14px 50%);padding-right:14px;}
+.pseg{flex:1;padding:10px 10px 10px 18px;clip-path:polygon(0 0,calc(100% - 12px) 0,100% 50%,calc(100% - 12px) 100%,0 100%,12px 50%);background:var(--s2);cursor:pointer;transition:background .14s;}
+.pseg:first-child{clip-path:polygon(0 0,calc(100% - 12px) 0,100% 50%,calc(100% - 12px) 100%,0 100%);padding-left:14px;}
+.pseg:last-child{clip-path:polygon(0 0,100% 0,100% 100%,0 100%,12px 50%);padding-right:14px;}
 .pseg.live{background:rgba(79,110,247,.1);}
+.pseg:hover{background:var(--s3);}
+.pseg.live:hover{background:rgba(79,110,247,.17);}
 .pseg-name{font-size:10px;font-weight:500;color:var(--tx);line-height:1.3;margin-bottom:2px;}
 .pseg-own{font-size:9px;color:var(--tm);}
-.pbadge{display:inline-block;font-size:8px;padding:1px 6px;border-radius:10px;margin-top:3px;font-weight:500;}
+.pbadge{display:inline-block;font-size:8px;padding:1px 5px;border-radius:8px;margin-top:3px;font-weight:500;}
 .pb-live{background:rgba(46,207,168,.15);color:var(--teal);}
 .pb-soon{background:rgba(85,90,102,.1);color:var(--td);}
-
-.sec-row{display:flex;align-items:center;justify-content:space-between;padding:20px 28px 10px;}
-.sec-t{font-size:13px;font-weight:500;}
+.sec-row{display:flex;align-items:center;justify-content:space-between;padding:18px 26px 10px;}
+.sec-t{font-size:12px;font-weight:500;}
 .sec-s{font-size:11px;color:var(--tm);}
-.ai-row{display:flex;gap:8px;padding:0 28px 16px;flex-wrap:wrap;}
-.ait{display:flex;align-items:center;gap:8px;background:var(--s1);border:0.5px solid var(--b1);border-radius:9px;padding:9px 13px;flex:1;min-width:130px;}
-.ait-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.ai-row{display:flex;gap:7px;padding:0 26px 16px;flex-wrap:wrap;}
+.ait{display:flex;align-items:center;gap:8px;background:var(--s1);border:0.5px solid var(--b1);border-radius:8px;padding:8px 11px;flex:1;min-width:130px;}
+.ait-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
 .ait-name{font-size:11px;font-weight:500;}
 .ait-sc{font-size:10px;color:var(--tm);}
-
-.mgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;padding:0 28px 28px;}
-.mc{background:var(--s1);border:0.5px solid var(--b1);border-radius:13px;padding:18px;cursor:pointer;position:relative;overflow:hidden;}
-.mc.live{border-color:rgba(79,110,247,.2);}
-.mc.locked{opacity:.5;cursor:not-allowed;}
-.mc-bar{position:absolute;top:0;left:0;right:0;height:2px;border-radius:13px 13px 0 0;}
-.mc-ico{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;}
-.mc-title{font-size:13px;font-weight:500;margin-bottom:4px;}
-.mc-desc{font-size:11px;color:var(--tm);line-height:1.5;margin-bottom:12px;}
+.mgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px;padding:0 26px 26px;}
+.mc{background:var(--s1);border:0.5px solid var(--b1);border-radius:12px;padding:16px;cursor:pointer;transition:all .17s;position:relative;overflow:hidden;}
+.mc:hover{border-color:var(--b2);background:var(--s2);transform:translateY(-1px);}
+.mc.live{border-color:rgba(79,110,247,.18);}
+.mc.locked{opacity:.48;cursor:not-allowed;}
+.mc-bar{position:absolute;top:0;left:0;right:0;height:2px;border-radius:12px 12px 0 0;}
+.mc-ico{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:11px;}
+.mc-title{font-size:12px;font-weight:500;margin-bottom:3px;}
+.mc-desc{font-size:11px;color:var(--tm);line-height:1.5;margin-bottom:10px;}
 .mc-ft{display:flex;align-items:center;justify-content:space-between;}
-.mst{font-size:10px;padding:3px 8px;border-radius:20px;font-weight:500;}
+.mst{font-size:10px;padding:2px 7px;border-radius:20px;font-weight:500;}
 .mst-live{background:rgba(46,207,168,.12);color:var(--teal);}
 .mst-dev{background:rgba(245,166,35,.1);color:var(--amber);}
 .mst-soon{background:rgba(85,90,102,.1);color:var(--td);}
-.mc-docs{font-size:10px;color:var(--td);}
+.mc-arr{font-size:11px;color:var(--ac);opacity:0;transition:opacity .14s;}
+.mc:hover .mc-arr{opacity:1;}
 
-.vtopbar{display:flex;align-items:center;gap:10px;padding:14px 20px;border-bottom:0.5px solid var(--b1);background:var(--s1);}
-.backbtn{font-size:11px;color:var(--tm);cursor:pointer;padding:4px 10px;border-radius:6px;border:0.5px solid var(--b1);}
+/* MODULE SHELL */
+.vtop{display:flex;align-items:center;gap:10px;padding:13px 18px;border-bottom:0.5px solid var(--b1);background:var(--s1);}
+.vback{font-size:11px;color:var(--tm);cursor:pointer;padding:4px 10px;border-radius:6px;border:0.5px solid var(--b1);transition:all .12s;}
+.vback:hover{color:var(--tx);border-color:var(--b2);}
 .vtitle{font-size:13px;font-weight:500;}
 .vsub{font-size:11px;color:var(--tm);}
 .lchip{margin-left:auto;font-size:9px;padding:3px 8px;border-radius:20px;background:rgba(46,207,168,.12);color:var(--teal);}
+.mod-body{display:grid;grid-template-columns:320px 1fr;min-height:calc(100vh - 112px);}
+.mod-l{border-right:0.5px solid var(--b1);display:flex;flex-direction:column;background:var(--s1);}
+.mod-r{overflow-y:auto;padding:20px;}
 
-.ins-body{display:grid;grid-template-columns:300px 1fr;min-height:500px;}
-.ins-l{border-right:0.5px solid var(--b1);padding:18px;background:var(--s1);}
-.ins-r{padding:18px;}
-.flabel{font-size:10px;color:var(--tm);text-transform:uppercase;letter-spacing:.6px;margin-bottom:6px;}
-.finput{width:100%;background:var(--s2);border:0.5px solid var(--b1);border-radius:8px;padding:9px 11px;font-size:12px;color:var(--tx);font-family:var(--font);resize:vertical;outline:none;margin-bottom:12px;}
-.finput::placeholder{color:var(--td);}
-.tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:12px;}
-.tag{font-size:10px;padding:3px 9px;border-radius:20px;border:0.5px solid var(--b1);color:var(--tm);cursor:pointer;}
+/* STEPPED LEFT PANEL */
+.steps-header{padding:18px 18px 0;}
+.steps-title{font-size:13px;font-weight:500;color:var(--tx);margin-bottom:2px;}
+.steps-sub{font-size:11px;color:var(--tm);margin-bottom:16px;}
+.step-list{flex:1;overflow-y:auto;padding:0 12px 12px;}
+.step{border-radius:10px;margin-bottom:6px;overflow:hidden;border:0.5px solid var(--b1);transition:border-color .14s;}
+.step.open{border-color:var(--b2);}
+.step-head{display:flex;align-items:center;gap:10px;padding:11px 13px;cursor:pointer;transition:background .12s;}
+.step-head:hover{background:var(--s2);}
+.step.open .step-head{background:var(--s2);}
+.step-num{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:500;flex-shrink:0;border:0.5px solid var(--b2);color:var(--tm);transition:all .14s;}
+.step.open .step-num{background:var(--ac);border-color:var(--ac);color:#fff;}
+.step.done .step-num{background:var(--teal);border-color:var(--teal);color:#fff;}
+.step-label{font-size:12px;font-weight:500;color:var(--tm);flex:1;transition:color .14s;}
+.step.open .step-label{color:var(--tx);}
+.step-check{font-size:11px;color:var(--teal);opacity:0;transition:opacity .14s;}
+.step.done .step-check{opacity:1;}
+.step-caret{width:14px;height:14px;color:var(--td);transition:transform .14s;flex-shrink:0;}
+.step.open .step-caret{transform:rotate(180deg);}
+.step-body{padding:0 13px 13px;display:none;}
+.step.open .step-body{display:block;}
+
+/* FORM ELEMENTS */
+.flbl{font-size:10px;color:var(--tm);text-transform:uppercase;letter-spacing:.6px;margin-bottom:5px;}
+.fin{width:100%;background:var(--s3);border:0.5px solid var(--b1);border-radius:7px;padding:8px 10px;font-size:12px;color:var(--tx);font-family:var(--font);resize:none;outline:none;transition:border .12s;margin-bottom:10px;}
+.fin:focus{border-color:var(--b2);}
+.fin::placeholder{color:var(--td);}
+.fsel{width:100%;background:var(--s3);border:0.5px solid var(--b1);border-radius:7px;padding:8px 10px;font-size:12px;color:var(--tx);font-family:var(--font);outline:none;-webkit-appearance:none;margin-bottom:10px;}
+
+/* SIGNAL SOURCE SECTIONS */
+.src-section{margin-bottom:12px;}
+.src-section-head{display:flex;align-items:center;gap:7px;margin-bottom:7px;}
+.src-section-label{font-size:9px;font-weight:500;letter-spacing:.8px;text-transform:uppercase;}
+.src-section-label.ext{color:var(--teal);}
+.src-section-label.int{color:var(--amber);}
+.src-divider{flex:1;height:0.5px;background:var(--b1);}
+.tags{display:flex;flex-wrap:wrap;gap:5px;}
+.tag{font-size:11px;padding:4px 9px;border-radius:20px;border:0.5px solid var(--b1);color:var(--tm);cursor:pointer;transition:all .12s;}
+.tag:hover{border-color:var(--b2);color:var(--tx);}
 .tag.on{background:rgba(79,110,247,.12);border-color:rgba(79,110,247,.3);color:var(--ac);}
-.fsel{width:100%;background:var(--s2);border:0.5px solid var(--b1);border-radius:8px;padding:8px 11px;font-size:12px;color:var(--tx);font-family:var(--font);outline:none;-webkit-appearance:none;margin-bottom:12px;}
-.runbtn{width:100%;padding:10px;border-radius:8px;font-size:12px;font-weight:500;background:var(--ac);color:#fff;border:none;cursor:pointer;font-family:var(--font);margin-top:4px;}
-.runbtn:disabled{opacity:.5;cursor:not-allowed;}
-.progbar{height:2px;background:var(--b1);border-radius:1px;overflow:hidden;margin:10px 0;}
-.progfill{height:100%;background:var(--ac);width:0%;transition:width .4s ease;border-radius:1px;}
+.tag.on.int-tag{background:rgba(245,166,35,.1);border-color:rgba(245,166,35,.3);color:var(--amber);}
 
-.ai-box{background:rgba(79,110,247,.07);border:0.5px solid rgba(79,110,247,.2);border-radius:10px;padding:14px;margin-bottom:14px;}
-.ai-lbl{font-size:9px;color:var(--ac);letter-spacing:.8px;text-transform:uppercase;font-weight:500;display:flex;align-items:center;gap:6px;margin-bottom:8px;}
+.runbtn{width:100%;padding:10px;border-radius:8px;font-size:12px;font-weight:500;background:var(--ac);color:#fff;border:none;cursor:pointer;font-family:var(--font);transition:all .14s;}
+.runbtn:hover{background:#6a84f9;}
+.runbtn:disabled{opacity:.45;cursor:not-allowed;}
+.progbar{height:2px;background:var(--b1);border-radius:1px;overflow:hidden;margin-top:8px;}
+.progfill{height:100%;background:var(--ac);width:0%;transition:width .4s ease;border-radius:1px;}
+.steps-footer{padding:12px;border-top:0.5px solid var(--b1);}
+
+/* RIGHT PANEL */
+.empty-st{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:400px;color:var(--td);text-align:center;}
+.e-ico{font-size:26px;margin-bottom:10px;opacity:.3;}
+.e-tx{font-size:12px;color:var(--tm);margin-bottom:3px;}
+.e-sx{font-size:11px;}
+.ai-box{background:rgba(79,110,247,.07);border:0.5px solid rgba(79,110,247,.2);border-radius:9px;padding:13px;margin-bottom:14px;}
+.ai-lbl{font-size:9px;color:var(--ac);letter-spacing:.8px;text-transform:uppercase;font-weight:500;display:flex;align-items:center;gap:5px;margin-bottom:7px;}
 .ai-pulse{width:5px;height:5px;border-radius:50%;background:var(--ac);animation:pulse 1.8s infinite;}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
 .ai-txt{font-size:12px;color:var(--tx);line-height:1.65;}
-.sh{font-size:10px;font-weight:500;color:var(--tm);margin-bottom:10px;letter-spacing:.3px;}
-.clu-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px;}
-.clucard{background:var(--s1);border:0.5px solid var(--b1);border-radius:9px;padding:12px;cursor:pointer;}
-.clucard.on{border-color:rgba(79,110,247,.35);background:var(--s2);}
-.clu-name{font-size:12px;font-weight:500;margin-bottom:3px;}
-.clu-ct{font-size:10px;color:var(--tm);margin-bottom:7px;}
+.sh{font-size:10px;font-weight:500;color:var(--tm);margin-bottom:9px;letter-spacing:.3px;}
+.clu-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;}
+.clucard{background:var(--s1);border:0.5px solid var(--b1);border-radius:8px;padding:11px;cursor:pointer;transition:all .14s;}
+.clucard:hover,.clucard.on{border-color:var(--b2);background:var(--s2);}
+.clucard.on{border-color:rgba(79,110,247,.35);}
+.clu-n{font-size:11px;font-weight:500;margin-bottom:2px;}
+.clu-c{font-size:10px;color:var(--tm);margin-bottom:6px;}
 .clu-bar{height:2px;background:var(--b1);border-radius:2px;}
-.clu-fill{height:100%;border-radius:2px;}
-.scatter-wrap{background:var(--s1);border:0.5px solid var(--b1);border-radius:9px;padding:14px;margin-bottom:14px;}
-.scatter-lbl{font-size:10px;color:var(--tm);margin-bottom:10px;}
-.scatter-c{position:relative;height:160px;background:var(--s2);border-radius:6px;overflow:hidden;}
-.snode{position:absolute;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:8px;color:rgba(255,255,255,.85);font-weight:500;cursor:pointer;text-align:center;line-height:1.2;padding:3px;}
-.sig-item{background:var(--s1);border:0.5px solid var(--b1);border-radius:8px;padding:11px 13px;margin-bottom:7px;display:flex;align-items:flex-start;gap:10px;}
-.sig-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-top:4px;}
+.clu-fill{height:100%;border-radius:2px;transition:width .7s ease;}
+.scatter-wrap{background:var(--s1);border:0.5px solid var(--b1);border-radius:9px;padding:13px;margin-bottom:14px;}
+.sc-lbl{font-size:10px;color:var(--tm);margin-bottom:9px;}
+.sc-c{position:relative;height:150px;background:var(--s2);border-radius:6px;overflow:hidden;}
+.sn{position:absolute;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:8px;color:rgba(255,255,255,.85);font-weight:500;cursor:pointer;text-align:center;line-height:1.2;padding:3px;transition:transform .14s;}
+.sn:hover{transform:scale(1.1) translate(-45%,-45%)!important;}
+.sig-item{background:var(--s1);border:0.5px solid var(--b1);border-radius:7px;padding:10px 12px;margin-bottom:6px;display:flex;align-items:flex-start;gap:9px;}
+.sig-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:4px;}
 .sig-txt{font-size:11px;color:var(--tx);line-height:1.55;flex:1;}
 .sig-meta{font-size:9px;color:var(--tm);margin-top:3px;}
 .sig-sc{font-size:10px;font-family:var(--mono);padding:2px 6px;border-radius:4px;background:var(--s2);color:var(--tm);white-space:nowrap;}
 
-.cl-body{display:grid;grid-template-columns:1fr 1fr;min-height:500px;}
-.cl-l{border-right:0.5px solid var(--b1);padding:18px;background:var(--s1);}
-.cl-r{padding:18px;}
-.frow{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;}
-.doc-panel{background:var(--s1);border:0.5px solid var(--b1);border-radius:10px;padding:18px;min-height:320px;}
-.doc-tr{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;padding-bottom:12px;border-bottom:0.5px solid var(--b1);}
-.doc-dn{font-size:13px;font-weight:500;}
-.doc-acts{display:flex;gap:7px;}
-.dbtn{font-size:10px;padding:4px 10px;border-radius:6px;border:0.5px solid var(--b1);color:var(--tm);cursor:pointer;background:transparent;font-family:var(--font);}
+/* CLAIMS */
+.cl-body{display:grid;grid-template-columns:320px 1fr;min-height:calc(100vh - 112px);}
+.cl-l{border-right:0.5px solid var(--b1);display:flex;flex-direction:column;background:var(--s1);}
+.cl-r{padding:18px;overflow-y:auto;}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;}
+.doc-panel{background:var(--s1);border:0.5px solid var(--b1);border-radius:10px;padding:16px;}
+.doc-tr{display:flex;align-items:center;justify-content:space-between;margin-bottom:13px;padding-bottom:11px;border-bottom:0.5px solid var(--b1);}
+.doc-dn{font-size:12px;font-weight:500;}
+.doc-acts{display:flex;gap:6px;}
+.dbtn{font-size:10px;padding:4px 9px;border-radius:5px;border:0.5px solid var(--b1);color:var(--tm);cursor:pointer;background:transparent;font-family:var(--font);transition:all .12s;}
+.dbtn:hover{border-color:var(--b2);color:var(--tx);}
 .dbtn.pri{background:var(--ac);color:#fff;border-color:var(--ac);}
-.dsec{margin-bottom:14px;}
-.dsec-t{font-size:10px;font-weight:500;color:var(--ac);letter-spacing:.5px;text-transform:uppercase;margin-bottom:5px;}
+.dsec{margin-bottom:13px;}
+.dsec-t{font-size:9px;font-weight:500;color:var(--ac);letter-spacing:.5px;text-transform:uppercase;margin-bottom:5px;}
 .dpara{font-size:11px;color:var(--tx);line-height:1.7;}
-.dhigh{background:rgba(245,166,35,.1);border-left:2px solid var(--amber);padding:8px 11px;border-radius:0 6px 6px 0;font-size:11px;color:var(--tx);line-height:1.6;margin:7px 0;}
-.comp-row{display:flex;align-items:center;gap:9px;padding:7px 10px;border-radius:6px;background:var(--s2);margin-bottom:5px;}
-.ci{width:12px;height:12px;border-radius:50%;flex-shrink:0;}
+.dhigh{background:rgba(245,166,35,.08);border-left:2px solid var(--amber);padding:7px 10px;border-radius:0 5px 5px 0;font-size:11px;color:var(--tx);line-height:1.6;margin:6px 0;}
+.comp-row{display:flex;align-items:center;gap:8px;padding:6px 9px;border-radius:5px;background:var(--s2);margin-bottom:4px;}
+.ci{width:11px;height:11px;border-radius:50%;flex-shrink:0;}
 .ct{font-size:11px;color:var(--tx);flex:1;}
 .cp{background:var(--green);}
 .cw{background:var(--amber);}
 .cf{background:var(--coral);}
-.empty-st{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:300px;color:var(--td);text-align:center;}
-.empty-ico{font-size:28px;margin-bottom:10px;opacity:.3;}
-.empty-tx{font-size:12px;color:var(--tm);margin-bottom:3px;}
-.empty-sx{font-size:11px;}
 .tdots span{display:inline-block;width:4px;height:4px;border-radius:50%;background:var(--ac);margin:0 2px;animation:db 1.2s infinite;}
 .tdots span:nth-child(2){animation-delay:.2s}
 .tdots span:nth-child(3){animation-delay:.4s}
@@ -162,74 +209,79 @@ body{font-family:var(--font);background:var(--bg);color:var(--tx);min-height:100
 </head>
 <body>
 <div class="app">
+
 <div class="topbar">
   <div class="logo">
     <div class="logo-mark">I2M</div>
     <span class="logo-name">Innovation Platform</span>
-    <div class="logo-div"></div>
+    <div class="logo-sep"></div>
     <span class="logo-sub">Mondelēz International</span>
   </div>
   <div class="topbar-r">
     <span class="tnav on" onclick="showV('home')">Dashboard</span>
-    <span class="tnav" onclick="showV('home')">Projects</span>
-    <span class="tnav" onclick="showV('home')">Analytics</span>
+    <span class="tnav">Projects</span>
+    <span class="tnav">Analytics</span>
     <div class="av">AJ</div>
   </div>
 </div>
+
 <div class="main">
 <div class="sidebar">
   <div class="sg">
-    <div class="slabel">I2M Stages</div>
-    <div class="sitem"><div class="sdot"></div>Initiatives</div>
-    <div class="sitem on" onclick="showV('home')"><div class="sdot live"></div>Insight to Ideas<span class="sbadge">live</span></div>
-    <div class="sitem" onclick="showV('claims')"><div class="sdot live"></div>Solution development<span class="sbadge">live</span></div>
-    <div class="sitem"><div class="sdot"></div>Project execution</div>
-    <div class="sitem"><div class="sdot"></div>Qual. &amp; verification</div>
-    <div class="sitem"><div class="sdot"></div>Post-launch eval.</div>
+    <div class="slbl">I2M stages</div>
+    <div class="si"><div class="sdot"></div>Initiatives</div>
+    <div class="si on" onclick="showV('home')"><div class="sdot live"></div>Insight to Ideas<span class="sbg">live</span></div>
+    <div class="si" onclick="showV('claims')"><div class="sdot live"></div>Solution dev.<span class="sbg">live</span></div>
+    <div class="si"><div class="sdot"></div>Project execution</div>
+    <div class="si"><div class="sdot"></div>Qual. & verification</div>
+    <div class="si"><div class="sdot"></div>Post-launch eval.</div>
   </div>
   <div class="sg">
-    <div class="slabel">Active modules</div>
-    <div class="sitem on" onclick="showV('insights')"><div class="sdot live"></div>Consumer insights<span class="sbadge">live</span></div>
-    <div class="sitem" onclick="showV('claims')"><div class="sdot live"></div>Claims drafting<span class="sbadge">live</span></div>
-    <div class="sitem"><div class="sdot"></div>LIA-Label<span class="sbadge dim">dev</span></div>
-    <div class="sitem"><div class="sdot"></div>Da Vinci<span class="sbadge dim">Q3</span></div>
-    <div class="sitem"><div class="sdot"></div>Renoir<span class="sbadge dim">Q3</span></div>
-    <div class="sitem"><div class="sdot"></div>Picasso<span class="sbadge dim">Q4</span></div>
-    <div class="sitem"><div class="sdot"></div>GINA<span class="sbadge dim">Q4</span></div>
+    <div class="slbl">Active modules</div>
+    <div class="si on" onclick="showV('insights')"><div class="sdot live"></div>Consumer insights<span class="sbg">live</span></div>
+    <div class="si" onclick="showV('claims')"><div class="sdot live"></div>Claims drafting<span class="sbg">live</span></div>
+    <div class="si"><div class="sdot"></div>LIA-Label<span class="sbg dim">dev</span></div>
+    <div class="si"><div class="sdot"></div>Da Vinci<span class="sbg dim">Q3</span></div>
+    <div class="si"><div class="sdot"></div>Renoir<span class="sbg dim">Q3</span></div>
+    <div class="si"><div class="sdot"></div>Picasso<span class="sbg dim">Q4</span></div>
   </div>
 </div>
+
 <div class="content">
 
 <!-- HOME -->
 <div class="view on" id="view-home">
   <div class="home-hero">
-    <div class="hero-row">
-      <div><div class="hero-title">Idea to Market — AI Platform</div><div class="hero-sub">One portal · Every stage · 12–18 month journey · Powered by AI</div></div>
-      <div class="hero-stats">
-        <div class="hstat"><div class="hstat-n" style="color:var(--teal);">2</div><div class="hstat-l">Live modules</div></div>
-        <div class="hstat"><div class="hstat-n" style="color:var(--amber);">3</div><div class="hstat-l">In development</div></div>
-        <div class="hstat"><div class="hstat-n" style="color:var(--td);">8</div><div class="hstat-l">On roadmap</div></div>
+    <div class="hero-top">
+      <div>
+        <div class="hero-title">Idea to Market — AI Platform</div>
+        <div class="hero-sub">One portal · Every stage · 12–18 month journey</div>
+      </div>
+      <div class="stats-row">
+        <div class="stat"><div class="stat-n" style="color:var(--teal);">2</div><div class="stat-l">Live</div></div>
+        <div class="stat"><div class="stat-n" style="color:var(--amber);">3</div><div class="stat-l">In dev</div></div>
+        <div class="stat"><div class="stat-n" style="color:var(--td);">8</div><div class="stat-l">Roadmap</div></div>
       </div>
     </div>
   </div>
   <div class="pipeline">
-    <div class="pipe-label">12–18 month process · click a stage to explore</div>
+    <div class="pipe-lbl">12–18 month pipeline · click a stage</div>
     <div class="pipe-track">
-      <div class="pseg"><div class="pseg-name">Initiatives</div><div class="pseg-own">Mkt · I&amp;A</div><div class="pbadge pb-soon">Roadmap</div></div>
-      <div class="pseg live" onclick="showV('insights')"><div class="pseg-name">Insight to Ideas</div><div class="pseg-own">Mkt · R&amp;D · I&amp;A</div><div class="pbadge pb-live">Live now</div></div>
-      <div class="pseg live" onclick="showV('claims')"><div class="pseg-name">Solution dev.</div><div class="pseg-own">Mkt · R&amp;D · Supply</div><div class="pbadge pb-live">Live now</div></div>
-      <div class="pseg"><div class="pseg-name">Project execution</div><div class="pseg-own">Mkt · R&amp;D · Supply</div><div class="pbadge pb-soon">Q3 2025</div></div>
-      <div class="pseg"><div class="pseg-name">Qual. &amp; Verif.</div><div class="pseg-own">Supply</div><div class="pbadge pb-soon">Q4 2025</div></div>
-      <div class="pseg"><div class="pseg-name">Post-launch</div><div class="pseg-own">Mkt · R&amp;D</div><div class="pbadge pb-soon">2026</div></div>
+      <div class="pseg"><div class="pseg-name">Initiatives</div><div class="pseg-own">Mkt · I&A</div><div class="pbadge pb-soon">Roadmap</div></div>
+      <div class="pseg live" onclick="showV('insights')"><div class="pseg-name">Insight to Ideas</div><div class="pseg-own">Mkt · R&D · I&A</div><div class="pbadge pb-live">Live</div></div>
+      <div class="pseg live" onclick="showV('claims')"><div class="pseg-name">Solution dev.</div><div class="pseg-own">Mkt · R&D · Supply</div><div class="pbadge pb-live">Live</div></div>
+      <div class="pseg"><div class="pseg-name">Project execution</div><div class="pseg-own">Mkt · R&D · Supply</div><div class="pbadge pb-soon">Q3</div></div>
+      <div class="pseg"><div class="pseg-name">Qual. & verif.</div><div class="pseg-own">Supply</div><div class="pbadge pb-soon">Q4</div></div>
+      <div class="pseg"><div class="pseg-name">Post-launch</div><div class="pseg-own">Mkt · R&D</div><div class="pbadge pb-soon">2026</div></div>
     </div>
   </div>
-  <div class="sec-row" style="padding-top:18px;"><div class="sec-t">AI tools embedded in process</div><div class="sec-s">Green = live · Amber = in dev · Gray = planned</div></div>
+  <div class="sec-row" style="padding-top:16px;"><div class="sec-t">AI tools in process</div><div class="sec-s">Green = live · Amber = in dev · Gray = planned</div></div>
   <div class="ai-row">
-    <div class="ait"><div class="ait-dot" style="background:var(--teal);box-shadow:0 0 5px var(--teal);"></div><div><div class="ait-name">Consumer insights AI</div><div class="ait-sc">Insight to Ideas</div></div></div>
-    <div class="ait"><div class="ait-dot" style="background:var(--teal);box-shadow:0 0 5px var(--teal);"></div><div><div class="ait-name">Claims drafting AI</div><div class="ait-sc">Solution development</div></div></div>
-    <div class="ait"><div class="ait-dot" style="background:var(--amber);"></div><div><div class="ait-name">LIA-Label (impact assess.)</div><div class="ait-sc">Solution development</div></div></div>
+    <div class="ait"><div class="ait-dot" style="background:var(--teal);box-shadow:0 0 4px var(--teal);"></div><div><div class="ait-name">Consumer insights AI</div><div class="ait-sc">Insight to Ideas</div></div></div>
+    <div class="ait"><div class="ait-dot" style="background:var(--teal);box-shadow:0 0 4px var(--teal);"></div><div><div class="ait-name">Claims drafting AI</div><div class="ait-sc">Solution development</div></div></div>
+    <div class="ait"><div class="ait-dot" style="background:var(--amber);"></div><div><div class="ait-name">LIA-Label</div><div class="ait-sc">Solution development</div></div></div>
     <div class="ait"><div class="ait-dot" style="background:var(--amber);"></div><div><div class="ait-name">NBT · GINA</div><div class="ait-sc">Solution development</div></div></div>
-    <div class="ait"><div class="ait-dot" style="background:var(--td);"></div><div><div class="ait-name">Da Vinci (claims mgmt.)</div><div class="ait-sc">Project execution</div></div></div>
+    <div class="ait"><div class="ait-dot" style="background:var(--td);"></div><div><div class="ait-name">Da Vinci</div><div class="ait-sc">Project execution</div></div></div>
     <div class="ait"><div class="ait-dot" style="background:var(--td);"></div><div><div class="ait-name">Renoir · Picasso</div><div class="ait-sc">Project execution</div></div></div>
   </div>
   <div class="sec-row"><div class="sec-t">All modules</div><div class="sec-s">Building room by room</div></div>
@@ -238,90 +290,147 @@ body{font-family:var(--font);background:var(--bg);color:var(--tx);min-height:100
       <div class="mc-bar" style="background:linear-gradient(90deg,var(--teal),var(--ac));"></div>
       <div class="mc-ico" style="background:rgba(46,207,168,.1);"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="6.5" stroke="#2ecfa8" stroke-width="1.4"/><circle cx="6.5" cy="7.5" r="1" fill="#2ecfa8"/><circle cx="11.5" cy="7.5" r="1" fill="#2ecfa8"/><path d="M6 11.5c1.5-1.8 5-1.8 6 0" stroke="#2ecfa8" stroke-width="1.2" stroke-linecap="round"/></svg></div>
       <div class="mc-title">Consumer insights</div>
-      <div class="mc-desc">Signal clustering &amp; theme mapping from trend, social, and I&amp;A data.</div>
-      <div class="mc-ft"><span class="mst mst-live">Live</span><span class="mc-docs">2 docs</span></div>
+      <div class="mc-desc">Signal clustering from external trends and internal GenBI AI data.</div>
+      <div class="mc-ft"><span class="mst mst-live">Live</span><span class="mc-arr">Open →</span></div>
     </div>
     <div class="mc live" onclick="showV('claims')">
       <div class="mc-bar" style="background:linear-gradient(90deg,var(--ac),var(--ac2));"></div>
       <div class="mc-ico" style="background:rgba(79,110,247,.1);"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="3.5" y="1.5" width="11" height="15" rx="1.8" stroke="#4f6ef7" stroke-width="1.4"/><path d="M6 6h6M6 9h6M6 12h4" stroke="#4f6ef7" stroke-width="1.1" stroke-linecap="round"/></svg></div>
-      <div class="mc-title">Claims &amp; regulatory</div>
-      <div class="mc-desc">AI-draft IDB, TDS, HACCP and regulatory documents with compliance checks.</div>
-      <div class="mc-ft"><span class="mst mst-live">Live</span><span class="mc-docs">8 docs</span></div>
+      <div class="mc-title">Claims & regulatory</div>
+      <div class="mc-desc">AI-draft IDB, TDS, HACCP and regulatory docs with compliance checks.</div>
+      <div class="mc-ft"><span class="mst mst-live">Live</span><span class="mc-arr">Open →</span></div>
     </div>
     <div class="mc">
       <div class="mc-bar" style="background:linear-gradient(90deg,var(--amber),var(--coral));"></div>
       <div class="mc-ico" style="background:rgba(245,166,35,.08);"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2.5l2 4 4.5.6-3.3 3.1.8 4.4L9 12.5l-4 2.1.8-4.4-3.3-3.1 4.5-.6z" stroke="#f5a623" stroke-width="1.4"/></svg></div>
       <div class="mc-title">LIA-Label impact</div>
       <div class="mc-desc">Automate label impact analysis. Covers Solution development stage.</div>
-      <div class="mc-ft"><span class="mst mst-dev">In dev</span><span class="mc-docs">IDS, ISQ, MRF</span></div>
+      <div class="mc-ft"><span class="mst mst-dev">In dev</span></div>
     </div>
     <div class="mc locked">
       <div class="mc-bar" style="background:var(--b1);"></div>
       <div class="mc-ico" style="background:rgba(85,90,102,.07);"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M2 14l4-5 3.5 4 3-5.5 4.5 6.5" stroke="#555a66" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
       <div class="mc-title">Nutrition benchmarking</div>
       <div class="mc-desc">NBT + GINA nutrient profiling and benchmarking across category.</div>
-      <div class="mc-ft"><span class="mst mst-soon">Q3 2025</span><span class="mc-docs">GINA, NBT</span></div>
+      <div class="mc-ft"><span class="mst mst-soon">Q3 2025</span></div>
     </div>
     <div class="mc locked">
       <div class="mc-bar" style="background:var(--b1);"></div>
       <div class="mc-ico" style="background:rgba(85,90,102,.07);"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="6.5" stroke="#555a66" stroke-width="1.4"/><path d="M9 5.5v3.5l2.5 2" stroke="#555a66" stroke-width="1.4" stroke-linecap="round"/></svg></div>
       <div class="mc-title">Da Vinci · claims mgmt.</div>
       <div class="mc-desc">Automated claims pipeline — Da Vinci, Renoir, Picasso connected.</div>
-      <div class="mc-ft"><span class="mst mst-soon">Q3 2025</span><span class="mc-docs">Horizon scanning</span></div>
+      <div class="mc-ft"><span class="mst mst-soon">Q3 2025</span></div>
     </div>
     <div class="mc locked">
       <div class="mc-bar" style="background:var(--b1);"></div>
       <div class="mc-ico" style="background:rgba(85,90,102,.07);"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="2" width="6" height="6" rx="1.5" stroke="#555a66" stroke-width="1.4"/><rect x="10" y="2" width="6" height="6" rx="1.5" stroke="#555a66" stroke-width="1.4"/><rect x="2" y="10" width="6" height="6" rx="1.5" stroke="#555a66" stroke-width="1.4"/><rect x="10" y="10" width="6" height="6" rx="1.5" stroke="#555a66" stroke-width="1.4"/></svg></div>
-      <div class="mc-title">Qual. &amp; post-launch</div>
+      <div class="mc-title">Qual. & post-launch</div>
       <div class="mc-desc">PAPAS, POG specs, post-launch scoring to close the I2M loop.</div>
-      <div class="mc-ft"><span class="mst mst-soon">Q4 2025</span><span class="mc-docs">PAPAS, POG spec</span></div>
+      <div class="mc-ft"><span class="mst mst-soon">Q4 2025</span></div>
     </div>
   </div>
 </div>
 
-<!-- INSIGHTS -->
+<!-- INSIGHTS VIEW -->
 <div class="view" id="view-insights">
-  <div class="vtopbar">
-    <div class="backbtn" onclick="showV('home')">← Back</div>
+  <div class="vtop">
+    <div class="vback" onclick="showV('home')">← Back</div>
     <div class="vtitle">Consumer insights</div>
-    <div class="vsub">· Signal clustering · Insight to Ideas stage</div>
+    <div class="vsub">· Signal clustering · Insight to Ideas</div>
     <div class="lchip">Live</div>
   </div>
-  <div class="ins-body">
-    <div class="ins-l">
-      <div class="flabel">Category / brief</div>
-      <input class="finput" id="ins-cat" value="Chocolate snacking, APAC, Gen Z" style="height:36px;resize:none;" />
-      <div class="flabel">Signal sources</div>
-      <div class="tags">
-        <div class="tag on" onclick="toggleTag(this)">Social listening</div>
-        <div class="tag on" onclick="toggleTag(this)">Trend reports</div>
-        <div class="tag" onclick="toggleTag(this)">Retail data</div>
-        <div class="tag on" onclick="toggleTag(this)">Consumer surveys</div>
-        <div class="tag" onclick="toggleTag(this)">Search trends</div>
-        <div class="tag" onclick="toggleTag(this)">Patent filings</div>
+  <div class="mod-body">
+    <div class="mod-l">
+      <div class="steps-header">
+        <div class="steps-title">Configure your analysis</div>
+        <div class="steps-sub">Complete each step, then run</div>
       </div>
-      <div class="flabel">Time window</div>
-      <div class="tags">
-        <div class="tag" onclick="sel1(this,'tw')">3 months</div>
-        <div class="tag on" onclick="sel1(this,'tw')">6 months</div>
-        <div class="tag" onclick="sel1(this,'tw')">12 months</div>
+      <div class="step-list">
+        <div class="step open" id="ins-s1">
+          <div class="step-head" onclick="toggleStep('ins-s1')">
+            <div class="step-num">1</div>
+            <div class="step-label">Category & brief</div>
+            <div class="step-check">✓</div>
+            <svg class="step-caret" viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+          </div>
+          <div class="step-body">
+            <div class="flbl">Category focus</div>
+            <input class="fin" id="ins-cat" value="Chocolate snacking, APAC, Gen Z" style="height:34px;" />
+            <div class="flbl">Focus question</div>
+            <textarea class="fin" rows="2" id="ins-q">What unmet needs exist around permissible indulgence?</textarea>
+          </div>
+        </div>
+        <div class="step" id="ins-s2">
+          <div class="step-head" onclick="toggleStep('ins-s2')">
+            <div class="step-num">2</div>
+            <div class="step-label">Signal sources</div>
+            <div class="step-check">✓</div>
+            <svg class="step-caret" viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+          </div>
+          <div class="step-body">
+            <div class="src-section">
+              <div class="src-section-head">
+                <span class="src-section-label ext">External</span>
+                <div class="src-divider"></div>
+              </div>
+              <div class="tags">
+                <div class="tag on" onclick="toggleTag(this)">Social listening</div>
+                <div class="tag on" onclick="toggleTag(this)">Trend reports</div>
+                <div class="tag on" onclick="toggleTag(this)">Consumer surveys</div>
+                <div class="tag" onclick="toggleTag(this)">Search trends</div>
+                <div class="tag" onclick="toggleTag(this)">Patent filings</div>
+              </div>
+            </div>
+            <div class="src-section" style="margin-bottom:0;">
+              <div class="src-section-head">
+                <span class="src-section-label int">Internal</span>
+                <div class="src-divider"></div>
+              </div>
+              <div class="tags">
+                <div class="tag on int-tag" onclick="toggleTag(this)">GenBI AI</div>
+                <div class="tag int-tag" onclick="toggleTag(this)">Retail data</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="step" id="ins-s3">
+          <div class="step-head" onclick="toggleStep('ins-s3')">
+            <div class="step-num">3</div>
+            <div class="step-label">Time window</div>
+            <div class="step-check">✓</div>
+            <svg class="step-caret" viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+          </div>
+          <div class="step-body">
+            <div class="tags">
+              <div class="tag" onclick="sel1(this,'tw')">3 months</div>
+              <div class="tag on" onclick="sel1(this,'tw')">6 months</div>
+              <div class="tag" onclick="sel1(this,'tw')">12 months</div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="flabel">Focus question</div>
-      <textarea class="finput" rows="3" id="ins-q">What unmet needs exist around permissible indulgence?</textarea>
-      <button class="runbtn" id="ins-btn" onclick="runIns()">Run signal analysis →</button>
-      <div class="progbar"><div class="progfill" id="ins-prog"></div></div>
-      <div style="margin-top:14px;padding-top:12px;border-top:0.5px solid var(--b1);">
-        <div class="flabel" style="margin-bottom:8px;">I2M documents generated</div>
-        <div style="font-size:11px;color:var(--tm);line-height:1.8;">Insight &amp; Trends Prediction<br>Idea generation brief<br>Integrated Design Scope (IDS)</div>
+      <div class="steps-footer">
+        <button class="runbtn" id="ins-btn" onclick="runIns()">Run signal analysis →</button>
+        <div class="progbar"><div class="progfill" id="ins-prog"></div></div>
       </div>
     </div>
-    <div class="ins-r">
-      <div class="empty-st" id="ins-empty"><div class="empty-ico">◎</div><div class="empty-tx">Configure brief and run analysis</div><div class="empty-sx">AI will cluster signals into actionable themes</div></div>
+    <div class="mod-r">
+      <div class="empty-st" id="ins-empty">
+        <div class="e-ico">◎</div>
+        <div class="e-tx">Configure your brief and run analysis</div>
+        <div class="e-sx">AI will cluster signals into actionable themes</div>
+      </div>
       <div id="ins-res" style="display:none;">
-        <div class="ai-box"><div class="ai-lbl"><div class="ai-pulse"></div>AI synthesis</div><div class="ai-txt" id="ins-ai"></div></div>
+        <div class="ai-box">
+          <div class="ai-lbl"><div class="ai-pulse"></div>AI synthesis</div>
+          <div class="ai-txt" id="ins-ai"></div>
+        </div>
         <div class="sh">Theme clusters — 4 identified</div>
         <div class="clu-grid" id="ins-clu"></div>
-        <div class="scatter-wrap"><div class="scatter-lbl">Signal map — volume vs. novelty</div><div class="scatter-c" id="ins-scat"></div></div>
+        <div class="scatter-wrap">
+          <div class="sc-lbl">Signal map — volume vs. novelty</div>
+          <div class="sc-c" id="ins-scat"></div>
+        </div>
         <div class="sh" id="ins-sigh"></div>
         <div id="ins-sigs"></div>
       </div>
@@ -329,49 +438,94 @@ body{font-family:var(--font);background:var(--bg);color:var(--tx);min-height:100
   </div>
 </div>
 
-<!-- CLAIMS -->
+<!-- CLAIMS VIEW -->
 <div class="view" id="view-claims">
-  <div class="vtopbar">
-    <div class="backbtn" onclick="showV('home')">← Back</div>
-    <div class="vtitle">Claims &amp; regulatory drafting</div>
+  <div class="vtop">
+    <div class="vback" onclick="showV('home')">← Back</div>
+    <div class="vtitle">Claims & regulatory drafting</div>
     <div class="vsub">· Solution development · IDB · TDS · HACCP</div>
     <div class="lchip">Live</div>
   </div>
   <div class="cl-body">
     <div class="cl-l">
-      <div class="flabel">Product name</div>
-      <input class="finput" id="cl-prod" value="Oreo Protein Crisp" style="height:36px;resize:none;" />
-      <div class="frow">
-        <div><div class="flabel">Category</div><select class="fsel" id="cl-cat"><option>Biscuits &amp; cookies</option><option>Chocolate</option><option>Gum &amp; candy</option><option>Crackers</option></select></div>
-        <div><div class="flabel">Market</div><select class="fsel" id="cl-mkt"><option>United States</option><option>European Union</option><option>United Kingdom</option><option>APAC — Multi</option></select></div>
+      <div class="steps-header">
+        <div class="steps-title">Configure your document</div>
+        <div class="steps-sub">Complete each step, then draft</div>
       </div>
-      <div class="flabel">Intended claims</div>
-      <div class="tags">
-        <div class="tag on" onclick="toggleTag(this)">High protein</div>
-        <div class="tag on" onclick="toggleTag(this)">No artificial flavors</div>
-        <div class="tag" onclick="toggleTag(this)">Gluten free</div>
-        <div class="tag on" onclick="toggleTag(this)">Kosher certified</div>
-        <div class="tag" onclick="toggleTag(this)">Non-GMO</div>
-        <div class="tag" onclick="toggleTag(this)">Low sugar</div>
+      <div class="step-list">
+        <div class="step open" id="cl-s1">
+          <div class="step-head" onclick="toggleStep('cl-s1')">
+            <div class="step-num">1</div>
+            <div class="step-label">Product details</div>
+            <div class="step-check">✓</div>
+            <svg class="step-caret" viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+          </div>
+          <div class="step-body">
+            <div class="flbl">Product name</div>
+            <input class="fin" id="cl-prod" value="Oreo Protein Crisp" style="height:34px;" />
+            <div class="flbl" style="margin-top:2px;">Category</div>
+            <select class="fsel" id="cl-cat"><option>Biscuits & cookies</option><option>Chocolate</option><option>Gum & candy</option><option>Crackers</option></select>
+            <div class="flbl">Market</div>
+            <select class="fsel" id="cl-mkt"><option>United States</option><option>European Union</option><option>United Kingdom</option><option>APAC — Multi</option></select>
+          </div>
+        </div>
+        <div class="step" id="cl-s2">
+          <div class="step-head" onclick="toggleStep('cl-s2')">
+            <div class="step-num">2</div>
+            <div class="step-label">Intended claims</div>
+            <div class="step-check">✓</div>
+            <svg class="step-caret" viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+          </div>
+          <div class="step-body">
+            <div class="tags">
+              <div class="tag on" onclick="toggleTag(this)">High protein</div>
+              <div class="tag on" onclick="toggleTag(this)">No artificial flavors</div>
+              <div class="tag" onclick="toggleTag(this)">Gluten free</div>
+              <div class="tag on" onclick="toggleTag(this)">Kosher certified</div>
+              <div class="tag" onclick="toggleTag(this)">Non-GMO</div>
+              <div class="tag" onclick="toggleTag(this)">Low sugar</div>
+            </div>
+          </div>
+        </div>
+        <div class="step" id="cl-s3">
+          <div class="step-head" onclick="toggleStep('cl-s3')">
+            <div class="step-num">3</div>
+            <div class="step-label">Nutrition facts</div>
+            <div class="step-check">✓</div>
+            <svg class="step-caret" viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+          </div>
+          <div class="step-body">
+            <textarea class="fin" rows="3" id="cl-nut">Serving 28g. Calories 130. Protein 10g. Total fat 4.5g. Sodium 115mg. Total carbs 15g. Sugar 5g.</textarea>
+          </div>
+        </div>
+        <div class="step" id="cl-s4">
+          <div class="step-head" onclick="toggleStep('cl-s4')">
+            <div class="step-num">4</div>
+            <div class="step-label">Document type</div>
+            <div class="step-check">✓</div>
+            <svg class="step-caret" viewBox="0 0 14 14" fill="none"><path d="M3 5l4 4 4-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+          </div>
+          <div class="step-body">
+            <div class="tags" style="flex-direction:column;gap:5px;">
+              <div class="tag on" style="width:fit-content;" onclick="sel1(this,'dt')">Integrated Design Brief (IDB)</div>
+              <div class="tag" style="width:fit-content;" onclick="sel1(this,'dt')">Technical Data Sheet (TDS)</div>
+              <div class="tag" style="width:fit-content;" onclick="sel1(this,'dt')">HACCP (PFSE & Form L)</div>
+              <div class="tag" style="width:fit-content;" onclick="sel1(this,'dt')">Food Safety Supplier Q. (FSSQ)</div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="flabel">Key nutritional facts</div>
-      <textarea class="finput" rows="3" id="cl-nut">Serving 28g. Calories 130. Protein 10g. Total fat 4.5g. Sodium 115mg. Total carbs 15g. Sugar 5g.</textarea>
-      <div class="flabel">Document type</div>
-      <div class="tags" style="flex-direction:column;gap:5px;">
-        <div class="tag on" style="width:fit-content;" onclick="sel1(this,'dt')">Integrated Design Brief (IDB)</div>
-        <div class="tag" style="width:fit-content;" onclick="sel1(this,'dt')">Technical Data Sheet (TDS)</div>
-        <div class="tag" style="width:fit-content;" onclick="sel1(this,'dt')">HACCP (PFSE &amp; Form L)</div>
-        <div class="tag" style="width:fit-content;" onclick="sel1(this,'dt')">Food Safety Supplier Q. (FSSQ)</div>
-      </div>
-      <button class="runbtn" id="cl-btn" onclick="runCl()" style="margin-top:12px;">Draft document →</button>
-      <div class="progbar"><div class="progfill" id="cl-prog"></div></div>
-      <div style="margin-top:14px;padding-top:12px;border-top:0.5px solid var(--b1);">
-        <div class="flabel" style="margin-bottom:8px;">Also available in this stage</div>
-        <div style="font-size:11px;color:var(--tm);line-height:1.8;">Risk Assessment / TRL<br>Design Safety Analysis (DSA)<br>Invention Disclosure Form (IDF)<br>Ingredient Supplier Q. (ISQ)<br>Material Request Form (MRF)</div>
+      <div class="steps-footer">
+        <button class="runbtn" id="cl-btn" onclick="runCl()">Draft document →</button>
+        <div class="progbar"><div class="progfill" id="cl-prog"></div></div>
       </div>
     </div>
     <div class="cl-r">
-      <div class="empty-st" id="cl-empty"><div class="empty-ico">◻</div><div class="empty-tx">Fill in the product brief and draft</div><div class="empty-sx">AI generates a claims document with compliance flags</div></div>
+      <div class="empty-st" id="cl-empty">
+        <div class="e-ico">◻</div>
+        <div class="e-tx">Fill in all steps and draft</div>
+        <div class="e-sx">AI generates a claims document with compliance flags</div>
+      </div>
       <div id="cl-res" style="display:none;">
         <div class="doc-panel">
           <div class="doc-tr">
@@ -392,43 +546,83 @@ body{font-family:var(--font);background:var(--bg);color:var(--tx);min-height:100
 </div>
 </div>
 </div>
+
 <script>
-function showV(id){document.querySelectorAll('.view').forEach(v=>v.classList.remove('on'));document.getElementById('view-'+id).classList.add('on');}
+function showV(id){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('on'));
+  document.getElementById('view-'+id).classList.add('on');
+}
 function toggleTag(el){el.classList.toggle('on');}
 function sel1(el,g){el.closest('.tags').querySelectorAll('.tag').forEach(t=>t.classList.remove('on'));el.classList.add('on');}
-function animProg(id,dur,cb){const el=document.getElementById(id);let w=0;const iv=setInterval(()=>{w=Math.min(w+100/(dur/60),94);el.style.width=w+'%';if(w>=94){clearInterval(iv);setTimeout(()=>{el.style.width='100%';setTimeout(cb,200);},300);}},60);}
+function toggleStep(id){
+  const s=document.getElementById(id);
+  s.classList.toggle('open',!s.classList.contains('open'));
+}
+function animProg(id,dur,cb){
+  const el=document.getElementById(id);let w=0;
+  const iv=setInterval(()=>{
+    w=Math.min(w+100/(dur/60),94);el.style.width=w+'%';
+    if(w>=94){clearInterval(iv);setTimeout(()=>{el.style.width='100%';setTimeout(cb,200);},300);}
+  },60);
+}
 function runIns(){
-  const btn=document.getElementById('ins-btn');btn.disabled=true;btn.textContent='Analyzing signals…';
-  document.getElementById('ins-empty').style.display='none';document.getElementById('ins-res').style.display='none';
+  const btn=document.getElementById('ins-btn');
+  btn.disabled=true;btn.textContent='Analyzing signals…';
+  document.getElementById('ins-empty').style.display='none';
+  document.getElementById('ins-res').style.display='none';
   animProg('ins-prog',2800,()=>{
     document.getElementById('ins-res').style.display='block';
     const ai=document.getElementById('ins-ai');
     ai.innerHTML='<div class="tdots"><span></span><span></span><span></span></div>';
-    setTimeout(()=>{ai.textContent='Across 6 months of APAC signals, 4 dominant themes emerged for chocolate snacking among Gen Z. The strongest opportunity sits at the intersection of mindful indulgence — consumers want permission to snack without guilt. High-protein formats are growing fastest (+34% YoY) yet remain underserved by premium brands. Mood and functional benefits are nascent but accelerating, signaling a formulation opportunity for the IDB pipeline.';},900);
-    const clusters=[{n:'Mindful indulgence',c:'412 signals',f:82,col:'var(--teal)'},{n:'High-protein formats',c:'338 signals',f:67,col:'var(--ac)'},{n:'Mood & functional',c:'201 signals',f:40,col:'var(--amber)'},{n:'Texture innovation',c:'177 signals',f:35,col:'#7c5cfc'}];
-    document.getElementById('ins-clu').innerHTML=clusters.map((c,i)=>`<div class="clucard ${i===0?'on':''}" onclick="selClu(this,'${c.n}')"><div class="clu-name">${c.n}</div><div class="clu-ct">${c.c}</div><div class="clu-bar"><div class="clu-fill" style="width:${c.f}%;background:${c.col};"></div></div></div>`).join('');
-    const nodes=[{l:'Mindful\nindulgence',x:65,y:25,sz:44,col:'var(--teal)'},{l:'High\nprotein',x:50,y:58,sz:38,col:'var(--ac)'},{l:'Mood\nfunctional',x:20,y:38,sz:30,col:'var(--amber)'},{l:'Texture',x:36,y:74,sz:26,col:'#7c5cfc'},{l:'Collab',x:76,y:66,sz:20,col:'var(--tm)'},{l:'Clean\nlabel',x:12,y:68,sz:18,col:'var(--tm)'}];
-    document.getElementById('ins-scat').innerHTML=nodes.map(n=>`<div class="snode" style="left:${n.x}%;top:${n.y}%;width:${n.sz}px;height:${n.sz}px;background:${n.col};opacity:.85;transform:translate(-50%,-50%);">${n.l}</div>`).join('');
+    setTimeout(()=>{ai.textContent='Across 6 months of external and internal signals, 4 dominant themes emerged for chocolate snacking among Gen Z in APAC. GenBI AI retail data reinforces the top finding: mindful indulgence is the strongest whitespace — consumers want permission to snack without guilt. High-protein formats growing +34% YoY, underserved by premium brands.';},900);
+    const clusters=[
+      {n:'Mindful indulgence',c:'412 signals',f:82,col:'var(--teal)'},
+      {n:'High-protein formats',c:'338 signals',f:67,col:'var(--ac)'},
+      {n:'Mood & functional',c:'201 signals',f:40,col:'var(--amber)'},
+      {n:'Texture innovation',c:'177 signals',f:35,col:'var(--ac2)'},
+    ];
+    document.getElementById('ins-clu').innerHTML=clusters.map((c,i)=>`<div class="clucard ${i===0?'on':''}" onclick="selClu(this,'${c.n}')"><div class="clu-n">${c.n}</div><div class="clu-c">${c.c}</div><div class="clu-bar"><div class="clu-fill" style="width:${c.f}%;background:${c.col};"></div></div></div>`).join('');
+    const nodes=[{l:'Mindful\nindulgence',x:65,y:25,sz:44,col:'var(--teal)'},{l:'High\nprotein',x:50,y:58,sz:38,col:'var(--ac)'},{l:'Mood\nfunctional',x:20,y:38,sz:30,col:'var(--amber)'},{l:'Texture',x:36,y:74,sz:26,col:'var(--ac2)'},{l:'Collab',x:76,y:66,sz:20,col:'var(--tm)'},{l:'Clean\nlabel',x:12,y:68,sz:18,col:'var(--tm)'}];
+    document.getElementById('ins-scat').innerHTML=nodes.map(n=>`<div class="sn" style="left:${n.x}%;top:${n.y}%;width:${n.sz}px;height:${n.sz}px;background:${n.col};opacity:.85;transform:translate(-50%,-50%);">${n.l}</div>`).join('');
     showSigs('Mindful indulgence');
     btn.disabled=false;btn.textContent='Re-run analysis →';
   });
 }
 function selClu(el,name){document.querySelectorAll('.clucard').forEach(c=>c.classList.remove('on'));el.classList.add('on');showSigs(name);}
 function showSigs(name){
-  const all={'Mindful indulgence':[{t:'"#permissiblesnack up 41% on TikTok APAC — consumers want to snack without guilt',m:'TikTok Social · Feb 2025',sc:94,col:'var(--teal)'},{t:'"Healthy chocolate snack" search volume in South Korea and Japan up 28% over 6 months',m:'Google Trends · Q1 2025',sc:88,col:'var(--teal)'},{t:'Better-for-you chocolate SKUs growing 2x category rate in Singapore and Australia',m:'Nielsen Retail · Mar 2025',sc:81,col:'var(--teal)'}],'High-protein formats':[{t:'Protein-fortified biscuit launches in APAC grew 34% YoY — only 12% positioned as premium',m:'Mintel New Products · 2025',sc:91,col:'var(--ac)'},{t:'"High protein snack" hashtag views on Xiaohongshu exceeded 800M in H2 2024',m:'Xiaohongshu · 2024',sc:85,col:'var(--ac)'}],'Mood & functional':[{t:'"Focus snack" and "calm chocolate" search terms up 55% from low base',m:'Search Trends · Q1 2025',sc:72,col:'var(--amber)'},{t:'Ashwagandha and L-theanine co-mentioned with chocolate in 18% of wellness posts — up from 4% in 2023',m:'Social Listening · 2025',sc:66,col:'var(--amber)'}],'Texture innovation':[{t:'ASMR snack content drives 3x engagement for crispy/layered chocolate formats vs standard',m:'TikTok Analysis · 2025',sc:79,col:'#7c5cfc'}]};
+  const all={
+    'Mindful indulgence':[
+      {t:'"#permissiblesnack up 41% on TikTok APAC — consumers want to snack without guilt',m:'TikTok Social · Feb 2025',sc:94,col:'var(--teal)'},
+      {t:'"Healthy chocolate snack" search volume in South Korea and Japan up 28% — Gen Z index 1.7x',m:'Google Trends · Q1 2025',sc:88,col:'var(--teal)'},
+      {t:'GenBI AI: better-for-you chocolate SKUs growing 2x category rate across APAC retail',m:'GenBI AI · Internal · Mar 2025',sc:85,col:'var(--amber)'},
+    ],
+    'High-protein formats':[
+      {t:'Protein-fortified biscuit launches in APAC grew 34% YoY — only 12% positioned as premium indulgent',m:'Mintel · 2025',sc:91,col:'var(--ac)'},
+      {t:'GenBI AI: high-protein SKU velocity up 3x vs category average in convenience channel',m:'GenBI AI · Internal · 2025',sc:87,col:'var(--amber)'},
+    ],
+    'Mood & functional':[
+      {t:'"Focus snack" and "calm chocolate" search terms up 55% from low base — accelerating',m:'Search Trends · Q1 2025',sc:72,col:'var(--amber)'},
+      {t:'Ashwagandha and L-theanine co-mentioned with chocolate in 18% of wellness posts — up from 4% in 2023',m:'Social Listening · 2025',sc:66,col:'var(--teal)'},
+    ],
+    'Texture innovation':[
+      {t:'ASMR snack content drives 3x engagement for crispy/layered chocolate formats vs standard',m:'TikTok Analysis · 2025',sc:79,col:'var(--ac2)'},
+    ],
+  };
   const list=all[name]||all['Mindful indulgence'];
   document.getElementById('ins-sigh').textContent='Top signals · '+name;
   document.getElementById('ins-sigs').innerHTML=list.map(s=>`<div class="sig-item"><div class="sig-dot" style="background:${s.col};"></div><div style="flex:1;"><div class="sig-txt">${s.t}</div><div class="sig-meta">${s.m}</div></div><div class="sig-sc">${s.sc}</div></div>`).join('');
 }
 function runCl(){
-  const btn=document.getElementById('cl-btn');btn.disabled=true;btn.textContent='Drafting document…';
-  document.getElementById('cl-empty').style.display='none';document.getElementById('cl-res').style.display='none';
+  const btn=document.getElementById('cl-btn');
+  btn.disabled=true;btn.textContent='Drafting document…';
+  document.getElementById('cl-empty').style.display='none';
+  document.getElementById('cl-res').style.display='none';
   animProg('cl-prog',3000,()=>{
     const prod=document.getElementById('cl-prod').value||'Product';
     const mkt=document.getElementById('cl-mkt').value||'United States';
     document.getElementById('cl-dn').textContent='Integrated Design Brief (IDB) — '+prod+' · Draft';
     document.getElementById('cl-res').style.display='block';
-    document.getElementById('cl-body').innerHTML=`<div class="dsec"><div class="dsec-t">1. Product overview</div><div class="dpara">${prod} is a protein-fortified biscuit snack targeting the better-for-you segment in the ${mkt} market. Designed for health-conscious Gen Z and millennial consumers seeking permissible indulgence. Regulatory framework: FDA 21 CFR Part 101.</div></div><div class="dsec"><div class="dsec-t">2. Claims substantiation</div><div class="dhigh"><strong style="font-size:11px;color:var(--amber);">HIGH PROTEIN</strong> — "10g of protein per serving." Meets FDA ≥10g per RACC threshold. <span style="color:var(--green);font-size:10px;">✓ Compliant</span></div><div class="dhigh"><strong style="font-size:11px;color:var(--amber);">NO ARTIFICIAL FLAVORS</strong> — Verify vanilla extract sourcing with R&D before finalizing. <span style="color:var(--amber);font-size:10px;">⚠ Verify sourcing</span></div><div class="dhigh"><strong style="font-size:11px;color:var(--amber);">KOSHER CERTIFIED</strong> — Submit cert documentation from approved certifying body. <span style="color:var(--green);font-size:10px;">✓ Process clear</span></div></div><div class="dsec"><div class="dsec-t">3. Compliance summary</div><div class="comp-row"><div class="ci cp"></div><div class="ct">FDA Nutrition Labeling — 21 CFR Part 101</div></div><div class="comp-row"><div class="ci cp"></div><div class="ct">Protein claim threshold met (≥10g per serving)</div></div><div class="comp-row"><div class="ci cw"></div><div class="ct">Natural flavors sourcing verification required</div></div><div class="comp-row"><div class="ci cp"></div><div class="ct">Kosher certification process aligned with supply</div></div><div class="comp-row"><div class="ci cf"></div><div class="ct">Low sugar claim not substantiated — remove from brief</div></div></div><div class="dsec"><div class="dsec-t">4. Next steps in I2M pipeline</div><div class="dpara">1. Confirm natural flavors sourcing with R&D. 2. Remove low sugar claim. 3. Submit Kosher cert to regulatory affairs. 4. Route IDB to DSA and Risk Assessment/TRL for Solution development gate. 5. Initiate FSSQ in parallel.</div></div>`;
+    document.getElementById('cl-body').innerHTML=`<div class="dsec"><div class="dsec-t">1. Product overview</div><div class="dpara">${prod} is a protein-fortified biscuit snack targeting the better-for-you segment in the ${mkt} market. Designed for health-conscious Gen Z and millennial consumers seeking permissible indulgence. Regulatory framework: FDA 21 CFR Part 101.</div></div><div class="dsec"><div class="dsec-t">2. Claims substantiation</div><div class="dhigh"><strong style="font-size:10px;color:var(--amber);">HIGH PROTEIN</strong> — "10g of protein per serving." Meets FDA ≥10g per RACC threshold. <span style="color:var(--green);font-size:10px;">✓ Compliant</span></div><div class="dhigh"><strong style="font-size:10px;color:var(--amber);">NO ARTIFICIAL FLAVORS</strong> — Verify vanilla extract sourcing with R&D before finalizing. <span style="color:var(--amber);font-size:10px;">⚠ Verify sourcing</span></div><div class="dhigh"><strong style="font-size:10px;color:var(--amber);">KOSHER CERTIFIED</strong> — Submit cert documentation. Include cert number on back panel. <span style="color:var(--green);font-size:10px;">✓ Process clear</span></div></div><div class="dsec"><div class="dsec-t">3. Compliance summary</div><div class="comp-row"><div class="ci cp"></div><div class="ct">FDA Nutrition Labeling — 21 CFR Part 101</div></div><div class="comp-row"><div class="ci cp"></div><div class="ct">Protein claim threshold met (≥10g per serving)</div></div><div class="comp-row"><div class="ci cw"></div><div class="ct">Natural flavors sourcing verification required</div></div><div class="comp-row"><div class="ci cp"></div><div class="ct">Kosher certification process aligned with supply</div></div><div class="comp-row"><div class="ci cf"></div><div class="ct">Low sugar claim not substantiated — remove from brief</div></div></div><div class="dsec"><div class="dsec-t">4. Next steps in I2M pipeline</div><div class="dpara">1. Confirm natural flavors sourcing with R&D. 2. Remove low sugar claim. 3. Submit Kosher cert to regulatory affairs. 4. Route IDB to DSA and Risk Assessment/TRL for Solution development gate. 5. Initiate FSSQ in parallel.</div></div>`;
     btn.disabled=false;btn.textContent='Redraft document →';
   });
 }
